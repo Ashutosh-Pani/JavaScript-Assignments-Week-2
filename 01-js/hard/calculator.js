@@ -17,6 +17,58 @@
   - `npm run test-calculator`
 */
 
-class Calculator { }
+class Calculator {
+  constructor() {
+    this.result = 0;
+  }
+
+  add(number) {
+    this.result += number;
+  }
+
+  subtract(number) {
+    this.result -= number;
+  }
+
+  multiply(number) {
+    this.result *= number;
+  }
+
+  divide(number) {
+    if (number === 0) {
+      throw new Error("Cannot divide by zero");
+    }
+    this.result /= number;
+  }
+
+  clear() {
+    this.result = 0;
+  }
+
+  getResult() {
+    return this.result;
+  }
+
+  calculate(expression) {
+    const cleaned = expression.replace(/\s+/g, "");
+
+    if (!/^[0-9+\-*/().]+$/.test(cleaned)) {
+      throw new Error("Invalid characters in expression");
+    }
+
+    try {
+      const value = Function(`"use strict"; return (${cleaned})`)();
+
+      if (!Number.isFinite(value)) {
+        throw new Error("Division by zero");
+      }
+
+      this.result = value;
+      return this.result;
+    } catch {
+      throw new Error("Invalid expression");
+    }
+  }
+}
 
 module.exports = Calculator;
