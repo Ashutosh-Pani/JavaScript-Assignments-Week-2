@@ -26,10 +26,22 @@
 */
 
 function countVowels(str) {
-  // Your code here
+  let newString = str.toLowerCase();
+  let arr = newString.split("");
+  let totalVowels = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (
+      arr[i] == "a" ||
+      arr[i] == "e" ||
+      arr[i] == "i" ||
+      arr[i] == "o" ||
+      arr[i] == "u"
+    ) {
+      totalVowels++;
+    }
+  }
+  return totalVowels;
 }
+countVowels(" ");
 
 module.exports = { countVowels };
-
-
-
