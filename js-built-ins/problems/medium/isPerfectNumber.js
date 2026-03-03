@@ -26,7 +26,24 @@
 */
 
 function isPerfectNumber(num) {
-  // Your code here
+
+
+  if(num <=1){
+    return false;
+  }
+
+  let sumOfDivisor = 1;
+
+  for(i = 2; i <=Math.sqrt(num) ; i++){
+    if(num % i == 0){
+      sumOfDivisor += i;
+       if(i !== num/i){
+      sumOfDivisor += num/i;
+    }
+    }
+   
+  }
+  return sumOfDivisor == num;
 }
 
 module.exports = { isPerfectNumber };
